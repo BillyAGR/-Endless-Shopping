@@ -16,7 +16,7 @@ const Card = ({ data }) => {
     const addProductsToCart = (e) => {
         e.stopPropagation()
         context.setCount(prev => prev + 1)
-        context.setcartProducts([...context.cartProducts, data])
+        context.setCartProducts([...context.cartProducts, data])
         context.openCheckoutSideMenu(data)
         context.closeProductDetail()
     }
