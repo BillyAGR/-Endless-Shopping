@@ -1,4 +1,4 @@
-export const  routes = [
+export const routes = [
     //Section A
     {
         to: "/",
@@ -14,7 +14,7 @@ export const  routes = [
     },
     {
         to: "/clothes",
-        title: "Clothes",
+        title: "Shoes",
         isPrivate: false,
         section: 1
     },

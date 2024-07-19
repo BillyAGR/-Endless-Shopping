@@ -27,19 +27,23 @@ export const ShoppingCartProvider = ({ children }) => {
     const [order, setOrder] = useState([])
 
     // Get products
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState(null)
+    const [filteredItems, setFilteredItems] = useState(null)
 
     // Get products by title
     const [searchByTitle, setSearchByTitle] = useState(null)
 
+    // Get products by category
+    const [searchByCategory, setSearchByCategory] = useState(null)
+
     // Get loading 
-    const [loading, setLoaiding] = useState(true)
+    const [loading, setLoading] = useState(true)
 
     // get Error
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        const fetcData = async () => {
+        const fetchData = async () => {
             try {
                 const response = await fetch('https://api.escuelajs.co/api/v1/products');
                 if (!response.ok) {
@@ -52,11 +56,44 @@ export const ShoppingCartProvider = ({ children }) => {
             } catch (error) {
                 setError(error.message);
             } finally {
-                setLoaiding(false);
+                setLoading(false);
             }
         }
-        fetcData();
+        fetchData();
     }, [])
+
+    // Filter functions
+    const filterItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+
+    const filteredItemsByCategory = (items, title, searchByCategory) => {
+        if (searchByCategory === 'All') return items
+        return items?.filter(item => item.category?.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+    }
+
+    const filterItemsByTitleAndCategory = (items, title, category) => {
+        return filteredItemsByCategory(items, title, category).filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
+    };
+
+
+    // Filter by
+    const filterBy = {
+        BY_TITLE: (items, title) => filterItemsByTitle(items, title),
+        BY_CATEGORY: (items, title, category) => filteredItemsByCategory(items, title, category),
+        BY_TITLE_AND_CATEGORY: (items, title, category) => filterItemsByTitleAndCategory(items, title, category)
+    };
+
+    // Apply filters
+    useEffect(() => {
+        if (searchByTitle || searchByCategory) {
+            const searchType = searchByTitle && searchByCategory ? 'BY_TITLE_AND_CATEGORY'
+                : searchByTitle ? 'BY_TITLE' : 'BY_CATEGORY'
+            setFilteredItems(filterBy[searchType](items, searchByTitle, searchByCategory))
+        } else {
+            setFilteredItems(items)
+        }
+    }, [items, searchByTitle, searchByCategory]);
 
     return (
         <ShoppingCartContext.Provider value={{
@@ -76,8 +113,11 @@ export const ShoppingCartProvider = ({ children }) => {
             setOrder,
             items,
             setItems,
+            filteredItems,
             searchByTitle,
             setSearchByTitle,
+            searchByCategory,
+            setSearchByCategory,
             loading,
             error
         }}>

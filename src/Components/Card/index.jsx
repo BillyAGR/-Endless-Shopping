@@ -8,6 +8,8 @@ const Card = ({ data }) => {
     const { name } = category ? category : ''
     const imageUrl = images ? images[0] : ''
 
+    // console.log('data', data);
+
     const showProduct = () => {
         context.openProductDetail()
         context.setProductToShow(data)

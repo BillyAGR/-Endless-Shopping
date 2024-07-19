@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 import { routes } from './Routes.jsx'
 
 const Navbar = () => {
-    const context = useContext(ShoppingCartContext);
+    const { cartProducts, setSearchByCategory} = useContext(ShoppingCartContext);
     const routesA = routes.filter((filter) => filter.section === 1)
     const routesB = routes.filter((filter) => filter.section === 2)
     const activeStyle = "underline underline-offset-4"
@@ -18,10 +18,12 @@ const Navbar = () => {
                     <li
                         key={route.to}
                         className={route.to === "/" ? "font-semibold text-lg" : ''}
+                        onClick={route.to === "/" ? () => setSearchByCategory(null)  : null}
                     >
                         <NavLink
                             to={route.to}
                             className={({ isActive }) => isActive ? activeStyle : ''}
+                            onClick={route.to !== "/" ? () => setSearchByCategory(route.title)  : null}
                         >
                             {route.title}
                         </NavLink>
@@ -46,7 +48,7 @@ const Navbar = () => {
                 <li className='flex items-center'>
                     <ShoppingBagIcon className='h-6 w-6 text-black' />
                     <div>
-                        {context.count}
+                        {cartProducts.length}
                     </div>
                 </li>
             </ul>
