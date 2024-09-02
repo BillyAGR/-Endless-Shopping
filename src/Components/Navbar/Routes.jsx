@@ -14,6 +14,12 @@ export const routes = [
     },
     {
         to: "/clothes",
+        title: "Clothes",
+        isPrivate: false,
+        section: 1
+    },
+    {
+        to: "/shoes",
         title: "Shoes",
         isPrivate: false,
         section: 1
@@ -25,8 +31,8 @@ export const routes = [
         section: 1
     },
     {
-        to: "/fornitures",
-        title: "Fornitures",
+        to: "/forniture",
+        title: "Furniture",
         isPrivate: false,
         section: 1
     },
@@ -37,8 +43,8 @@ export const routes = [
         section: 1
     },
     {
-        to: "/others",
-        title: "Others",
+        to: "/miscellaneous",
+        title: "Miscellaneous",
         isPrivate: false,
         section: 1
     },

@@ -1,20 +1,21 @@
-import { useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ChevronLeftIcon } from '@heroicons/react/24/solid';
-import { ShoppingCartContext } from '../../Context';
-import { Layout } from '../../Components/Layout';
-import { OrderCard } from '../../Components/OrderCard';
+import { useContext } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { ChevronLeftIcon } from '@heroicons/react/24/solid'
+import { ShoppingCartContext } from '../../Context'
+import { Layout } from '../../Components/Layout'
+import { OrderCard } from '../../Components/OrderCard'
+import { totalPrice } from '../../utils'
 
 function MyOrder() {
-    const { order } = useContext(ShoppingCartContext);
+    const { order } = useContext(ShoppingCartContext)
     const { id } = useParams();
-    const indexOrderPath = Number(id);
+    const indexOrderPath = Number(id)
 
     // Determines the index of the order to display
-    const orderIndex = isNaN(indexOrderPath) ? order?.length - 1 : indexOrderPath;
+    const orderIndex = isNaN(indexOrderPath) ? order?.length - 1 : indexOrderPath
 
     // Gets the list of products for the current order
-    const products = order?.[orderIndex]?.products || [];
+    const products = order?.[orderIndex]?.products || []
 
     return (
         <Layout>
@@ -37,9 +38,14 @@ function MyOrder() {
                         />
                     ))
                 ) : (
-                    <p>No products found in this order.</p>
+                    <p className='col-span-full text-center text-xl'>No products found in this order.</p>
                 )}
+                <p className='flex justify-between items-center mb-2'>
+                    <span className='font-light'>Total:</span>
+                    <span className='font-medium text-2xl'>${totalPrice(products)}</span>
+                </p>
             </div>
+
         </Layout>
     );
 }

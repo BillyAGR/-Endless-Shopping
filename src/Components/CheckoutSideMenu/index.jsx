@@ -15,7 +15,7 @@ const CheckoutSideMenu = () => {
     }
 
     const handleCheckout = () => {
-        const cartProducts = context.cartProducts;
+        const cartProducts = context.cartProducts
 
         const orderToAdd = {
             date: dateFormatte(),
@@ -26,8 +26,15 @@ const CheckoutSideMenu = () => {
 
         context.setOrder([...context.order, orderToAdd])
         context.setCartProducts([])
-        context.setCount(0);
+        context.setCount(0)
+        closeProductDetail()
     }
+
+    const closeProductDetail = () => {
+        context.closeCheckoutSideMenu()
+        context.closeProductDetail()
+    }
+
 
     return (
         <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu  flex-col fixed right-0 border border-black rounded-lg bg-white`} >
@@ -38,7 +45,7 @@ const CheckoutSideMenu = () => {
                 <div>
                     <XMarkIcon
                         className='h-6 w-6 text-black cursor-pointer'
-                        onClick={() => context.closeCheckoutSideMenu()}
+                        onClick={() => closeProductDetail()}
                     />
                 </div>
             </div>

@@ -7,23 +7,23 @@ export const ShoppingCartProvider = ({ children }) => {
     // Shopping Cart - Increment quantity
     const [count, setCount] = useState(0)
 
-    //Product Detail - Open/Close
+    // Product Detail - Open/Close
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
 
-    //Product Detail - Open/Close
+    // Product Detail - Open/Close
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
-    //Product Detail - show product
+    // Product Detail - show product
     const [productToShow, setProductToShow] = useState({})
 
-    //Shopping Cart - Add products to car
+    // Shopping Cart - Add products to car
     const [cartProducts, setCartProducts] = useState([])
 
-    //Shopping Cart - Order
+    // Shopping Cart - Order
     const [order, setOrder] = useState([])
 
     // Get products
@@ -42,12 +42,17 @@ export const ShoppingCartProvider = ({ children }) => {
     // get Error
     const [error, setError] = useState(null)
 
+    // Initial displayMode to 'hidden'
+    const [displayMode, setDisplayMode] = useState('hidden')
+
+ 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch('https://api.escuelajs.co/api/v1/products');
                 if (!response.ok) {
-                    throw new Error(`HTTPS Error! status: ${response.status}`);
+                    throw new Error(`HTTPS Error! status : ${response.status}`);
                 }
 
                 const data = await response.json();
@@ -75,7 +80,6 @@ export const ShoppingCartProvider = ({ children }) => {
     const filterItemsByTitleAndCategory = (items, title, category) => {
         return filteredItemsByCategory(items, title, category).filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
     };
-
 
     // Filter by
     const filterBy = {
@@ -119,7 +123,9 @@ export const ShoppingCartProvider = ({ children }) => {
             searchByCategory,
             setSearchByCategory,
             loading,
-            error
+            error,
+            displayMode, 
+            setDisplayMode
         }}>
             {children}
         </ShoppingCartContext.Provider>

@@ -22,11 +22,12 @@ const ProductDetail = () => {
                 </div>
             </div>
             <figure className='px-6'>
-                <img
-                    className='w-full h-full rounded-lg'
-                    src={imageUrl}
-                    alt={title}
-                />
+                {imageUrl &&
+                    <img
+                        className='w-full h-full rounded-lg'
+                        src={imageUrl}
+                        alt={title}
+                    />}
             </figure>
             <p className='flex flex-col p-6'>
                 <span className='font-medium text-2xl mb-2'>{price}</span>
