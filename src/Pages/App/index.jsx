@@ -8,6 +8,7 @@ import { NotFound } from '../NotFound'
 import { SignIn } from '../SignIn'
 import { Navbar } from '../../Components/Navbar'
 import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu'
+import { OverlayDark } from '../../Components/OverlayDark'
 import './App.css'
 
 const AppRoutes = () => {
@@ -29,10 +30,11 @@ const AppRoutes = () => {
 function App() {
   return (
     <ShoppingCartProvider>
-      <BrowserRouter>
-        <AppRoutes />
+      <BrowserRouter> 
         <Navbar />
-      <CheckoutSideMenu />
+        <OverlayDark />
+        <AppRoutes />
+        <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingCartProvider>
   )

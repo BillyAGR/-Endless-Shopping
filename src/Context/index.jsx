@@ -39,7 +39,7 @@ export const ShoppingCartProvider = ({ children }) => {
     // Get loading 
     const [loading, setLoading] = useState(true)
 
-    // get Error
+    // Get Error
     const [error, setError] = useState(null)
 
     // Initial displayMode to 'hidden'
