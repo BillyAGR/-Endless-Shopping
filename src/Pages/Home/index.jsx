@@ -3,7 +3,7 @@ import { Layout } from '../../Components/Layout'
 import { CardSkeleton } from '../../Components/CardSkeleton'
 import { SearchSkeleton } from '../../Components/SearchSkeleton'
 import { Card } from '../../Components/Card'
-import { ProductDetail } from '../../Components/ProductDetail'
+import { PanelRight } from '../../Components/PanelRight'
 import { ShoppingCartContext } from '../../Context'
 
 function Home() {
@@ -72,7 +72,7 @@ function Home() {
             <div className='grid gap-4  max-w-screen-lg sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center items-center'>
                 {renderView()}
             </div>
-            <ProductDetail />
+            <PanelRight />
         </Layout>
     )
 }

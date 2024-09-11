@@ -7,7 +7,6 @@ import { MyOrders } from '../MyOrders'
 import { NotFound } from '../NotFound'
 import { SignIn } from '../SignIn'
 import { Navbar } from '../../Components/Navbar'
-import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu'
 import { OverlayDark } from '../../Components/OverlayDark'
 import './App.css'
 
@@ -34,7 +33,6 @@ function App() {
         <Navbar />
         <OverlayDark />
         <AppRoutes />
-        <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingCartProvider>
   )

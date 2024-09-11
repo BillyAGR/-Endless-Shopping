@@ -9,6 +9,7 @@ const Navbar = () => {
         cartProducts,
         setSearchByCategory,
         openProductDetail,
+        isCheckoutSideMenuOpen,
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
         closeProductDetail,
@@ -22,9 +23,8 @@ const Navbar = () => {
     const inactiveStyle = 'hover:bg-gray-200 rounded-full p-1'
 
     const handleProductClick = (e) => {
+        (isCheckoutSideMenuOpen) ? (closeCheckoutSideMenu(), closeProductDetail()) : (openCheckoutSideMenu(), openProductDetail())
         e.stopPropagation()
-        openCheckoutSideMenu()
-        openProductDetail()
         setDisplayMode('hidden')
     }
 
@@ -47,7 +47,7 @@ const Navbar = () => {
     )
 
     const renderShopping = (display, ml) => (
-        <li className={`${display} items-center ${ml} cursor-pointer lg:flex`} onClick={handleProductClick}>
+        <li className={`${display} items-center ${ml} cursor-pointer lg:flex`} onClick={(e) => handleProductClick(e)}>
             <ShoppingBagIcon className='h-6 w-6 text-black' />
             <div>{cartProducts.length}</div>
         </li>
@@ -66,7 +66,7 @@ const Navbar = () => {
                     {renderShopping('flex', 'ml-auto')}
                 </ul>
             </div>
-            <div className={`${displayMode} flex-col inset-150 justify-between items-center fixed top-16 z-50 w-50 h-full py-5 px-8 text-sm font-light bg-gray-100 rounded-lg
+            <div className={`${displayMode} flex-col justify-between items-center fixed top-16 z-50 w-50 h-full py-5 px-8 text-sm font-light bg-gray-100 rounded-lg
             lg:top-0 lg:flex lg:flex-row lg:w-full lg:h-auto lg:bg-white`}>
                 <ul className='flex flex-col items-start gap-3 lg:flex-row lg:items-center'>
                     {routesA.map(route => renderNavLink(route, route.to === '/' ? () => setSearchByCategory(null) : () => setSearchByCategory(route.title)))}
