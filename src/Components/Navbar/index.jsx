@@ -22,14 +22,12 @@ const Navbar = () => {
     const activeStyle = 'underline underline-offset-4'
     const inactiveStyle = 'hover:bg-gray-200 rounded-full p-1'
 
-    const handleProductClick = (e) => {
+    const handleProductClick = () => {
         (isCheckoutSideMenuOpen) ? (closeCheckoutSideMenu(), closeProductDetail()) : (openCheckoutSideMenu(), openProductDetail())
-        e.stopPropagation()
         setDisplayMode('hidden')
     }
 
-    const toggleDisplayMode = (e) => {
-        e.stopPropagation()
+    const toggleDisplayMode = () => {
         setDisplayMode(prevMode => (prevMode === 'hidden' ? 'flex' : 'hidden'))
         closeCheckoutSideMenu()
         closeProductDetail()
@@ -69,7 +67,7 @@ const Navbar = () => {
             <div className={`${displayMode} flex-col justify-between items-center fixed top-16 z-50 w-50 h-full py-5 px-8 text-sm font-light bg-gray-100 rounded-lg
             lg:top-0 lg:flex lg:flex-row lg:w-full lg:h-auto lg:bg-white`}>
                 <ul className='flex flex-col items-start gap-3 lg:flex-row lg:items-center'>
-                    {routesA.map(route => renderNavLink(route, route.to === '/' ? () => setSearchByCategory(null) : () => setSearchByCategory(route.title)))}
+                    {routesA.map(route => renderNavLink(route, route.to === '/' ? () => (setSearchByCategory(null), toggleDisplayMode()) : () => (setSearchByCategory(route.title), toggleDisplayMode())))}
                 </ul>
                 <ul className='flex flex-col gap-3 py-12 lg:flex-row lg:justify-center lg:py-0'>
                     <li className='text-black/60'>user@dominio.com</li>
