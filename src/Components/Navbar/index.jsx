@@ -71,7 +71,7 @@ const Navbar = () => {
                 </ul>
                 <ul className='flex flex-col gap-3 py-12 lg:flex-row lg:justify-center lg:py-0'>
                     <li className='text-black/60'>user@dominio.com</li>
-                    {routesB.map(route => renderNavLink(route))}
+                    {routesB.map(route => renderNavLink(route), toggleDisplayMode())}
                     {renderShopping('hidden', '')}
                 </ul>
             </div>
