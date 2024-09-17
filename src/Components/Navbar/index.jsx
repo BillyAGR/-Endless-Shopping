@@ -53,25 +53,25 @@ const Navbar = () => {
 
     return (
         <nav>
-            <div className='flex justify-between items-center fixed z-50 top-0 w-full py-5 px-8 text-sm font-light bg-white lg:hidden'>
+            <div className='flex justify-between items-center fixed z-30 top-0 w-full py-5 px-8 text-sm font-light bg-white lg:hidden'>
                 <ul className='flex w-full'>
                     <li>
                         <Bars3Icon
                             className='h-6 w-6 cursor-pointer'
-                            onClick={toggleDisplayMode}
+                            onClick={() => toggleDisplayMode()}
                         />
                     </li>
                     {renderShopping('flex', 'ml-auto')}
                 </ul>
             </div>
-            <div className={`${displayMode} flex-col justify-between items-center fixed top-16 z-50 w-50 h-full py-5 px-8 text-sm font-light bg-gray-100 rounded-lg
+            <div className={`${displayMode} flex-col justify-between items-center fixed top-0 z-50 w-50 h-full py-5 px-8 text-sm font-light bg-gray-100 rounded-lg
             lg:top-0 lg:flex lg:flex-row lg:w-full lg:h-auto lg:bg-white`}>
                 <ul className='flex flex-col items-start gap-3 lg:flex-row lg:items-center'>
                     {routesA.map(route => renderNavLink(route, route.to === '/' ? () => (setSearchByCategory(null), toggleDisplayMode()) : () => (setSearchByCategory(route.title), toggleDisplayMode())))}
                 </ul>
                 <ul className='flex flex-col gap-3 py-12 lg:flex-row lg:justify-center lg:py-0'>
                     <li className='text-black/60'>user@dominio.com</li>
-                    {routesB.map(route => renderNavLink(route), toggleDisplayMode())}
+                    {routesB.map(route => renderNavLink(route, () => toggleDisplayMode()))}
                     {renderShopping('hidden', '')}
                 </ul>
             </div>

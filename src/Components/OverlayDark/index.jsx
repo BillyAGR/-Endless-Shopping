@@ -8,7 +8,7 @@ const OverlayDark = () => {
     } = useContext(ShoppingCartContext)
 
     return (
-        <div className={`${displayMode === 'hidden' ? 'hidden' : 'flex fixed inset-0  z-40 w-full h-full cursor-pointer bg-gray-400 opacity-55 lg:hidden'}`} 
+        <div className={`${displayMode === 'hidden' ? 'hidden' : 'flex fixed inset-0 z-40 top-0 h-full cursor-pointer bg-gray-400 opacity-55 lg:hidden'}`}
         onClick={() =>{setDisplayMode('hidden')}}/>
     )
 }
