@@ -14,7 +14,9 @@ const Navbar = () => {
         closeCheckoutSideMenu,
         closeProductDetail,
         displayMode,
-        setDisplayMode
+        setDisplayMode,
+        signOut,
+        setSignOut,
     } = useContext(ShoppingCartContext)
 
     const routesA = routes.filter(route => route.section === 1)
@@ -51,6 +53,16 @@ const Navbar = () => {
         </li>
     )
 
+    const setRoute = (route) => {
+
+        if (route.to === '/sign-in') {
+            return renderNavLink(route, () => (setSignOut(true), toggleDisplayMode()))
+        }
+        console.log('signOut', signOut)
+        return renderNavLink(route, () => toggleDisplayMode()) 
+
+    }
+
     return (
         <nav>
             <div className='flex justify-between items-center fixed z-30 top-0 w-full py-5 px-8 text-sm font-light bg-white lg:hidden'>
@@ -71,7 +83,7 @@ const Navbar = () => {
                 </ul>
                 <ul className='flex flex-col gap-3 py-12 lg:flex-row lg:justify-center lg:py-0'>
                     <li className='text-black/60'>user@dominio.com</li>
-                    {routesB.map(route => renderNavLink(route, () => toggleDisplayMode()))}
+                    {routesB.map(route => setRoute(route))}
                     {renderShopping('hidden', '')}
                 </ul>
             </div>
