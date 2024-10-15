@@ -10,6 +10,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
     //singOut 
     const [signOut, setSignOut] = useLocalStorage('sign-out', false) 
+    
     // Shopping Cart - Increment quantity
     const [count, setCount] = useState(0)
 
