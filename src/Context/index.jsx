@@ -8,9 +8,12 @@ export const ShoppingCartProvider = ({ children }) => {
     //My Account
     const [account, setAccount] = useLocalStorage('account', {})
 
+    //My Accounts users
+    const [accountsUsers, setAccountsUsers] = useLocalStorage('accounts', [])
+
     //singOut 
-    const [signOut, setSignOut] = useLocalStorage('sign-out', false) 
-    
+    const [signOut, setSignOut] = useLocalStorage('sign-out', false)
+
     // Shopping Cart - Increment quantity
     const [count, setCount] = useState(0)
 
@@ -105,9 +108,11 @@ export const ShoppingCartProvider = ({ children }) => {
     }, [items, searchByTitle, searchByCategory]);
 
     return (
-        <ShoppingCartContext.Provider value={{
+        <ShoppingCartContext.Provider value={{ 
             account,
             setAccount,
+            accountsUsers,
+            setAccountsUsers,
             signOut,
             setSignOut,
             count,

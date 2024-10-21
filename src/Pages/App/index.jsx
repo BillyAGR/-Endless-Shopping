@@ -29,7 +29,7 @@ const AppRoutes = () => {
 function App() {
   return (
     <ShoppingCartProvider>
-      <BrowserRouter> 
+      <BrowserRouter basename="/endless-Shopping"> 
         <Navbar />
         <OverlayDark />
         <AppRoutes />

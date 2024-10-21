@@ -52,13 +52,13 @@ export const routes = [
     {
         to: "/my-orders",
         title: "My Orders",
-        isPrivate: false,
+        isPrivate: true,
         section: 2
     },
     {
         to: "/my-account",
         title: "My Account",
-        isPrivate: false,
+        isPrivate: true,
         section: 2
     },
     {
