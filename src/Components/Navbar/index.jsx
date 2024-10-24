@@ -16,8 +16,7 @@ const Navbar = () => {
         displayMode,
         setDisplayMode,
         account,
-        signOut,
-        setSignOut,
+        signOut
     } = useContext(ShoppingCartContext)
 
     const routesA = routes.filter(route => route.section === 1)
@@ -57,7 +56,6 @@ const Navbar = () => {
         if ((route.isPrivate && signOut) || !route.isPrivate) {
             const handleClick = route.to === '/sign-in'
                 ? () => {
-                    setSignOut(true)
                     toggleDisplayMode()
                 }
                 : () => toggleDisplayMode()
@@ -85,7 +83,7 @@ const Navbar = () => {
                     {routesA.map(route => renderNavLink(route, route.to === '/' ? () => (setSearchByCategory(null), toggleDisplayMode()) : () => (setSearchByCategory(route.title), toggleDisplayMode())))}
                 </ul>
                 <ul className='flex flex-col gap-3 py-12 lg:flex-row lg:justify-center lg:py-0'>
-                    <li className='text-black/60'>{account?.email}</li>
+                    <li className='text-black/60'>{signOut && account?.email}</li>
                     {routesB.map(route => renderRoutes(route))}
                     {renderShopping('hidden', '')}
                 </ul>
