@@ -97,7 +97,7 @@ function SignIn() {
                             </button>
                         </div>
                     )}
-                    <h1 className='font-medium text-3xl mb-6'>{view === 'user-info' ? 'Shopi' : 'Create Account'}</h1>
+                    <h1 className='font-medium text-3xl mb-6'>{view === 'user-info' ? 'Shopi' : 'Create account'}</h1>
 
                     <label htmlFor='email' className='self-start mb-2'>Email:</label>
                     <input
