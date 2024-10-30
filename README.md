@@ -37,7 +37,7 @@ _These instructions will allow you to get a working copy of the project on your 
 First of all, you should clone or download (.zip) the project repository as follows:
 
 ```bash
-  git clone https://github.com/MarkoTeixido/react-shopi.git
+  git clone https://github.com/BillyAGR/endless-Shopping.git
 ```
  
 Now that you have the project, you have to open it in your code editor and in the terminal, install the dependencies as follows:
